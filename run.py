@@ -1,8 +1,3 @@
-from flask import Flask
+from my_todo_list import app
 
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return 'App running!'
-
+app.run(debug=True)
