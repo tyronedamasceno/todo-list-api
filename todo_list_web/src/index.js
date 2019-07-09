@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { HashRouter as Router, Route } from "react-router-dom";
+import Task from "./task"
+import './App.css';
+
+function App() {
+    return (
+        <div className="App">
+            <h1>Tyrone to-do list </h1>
+            <Router>
+                <Route exact path="/" component={Task}/>
+                <Route path="tasks" />
+            </Router>
+        </div>
+    )
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
