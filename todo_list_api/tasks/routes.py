@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from werkzeug.exceptions import BadRequest
 
-from my_todo_list import db
-from my_todo_list.tasks.models import Task
+from todo_list_api import db
+from todo_list_api.tasks.models import Task
 
 tasks = Blueprint('tasks', __name__)
 

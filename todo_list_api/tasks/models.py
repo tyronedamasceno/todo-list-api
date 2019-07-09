@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from my_todo_list import db
+from todo_list_api import db
 
 
 class Task(db.Model):
