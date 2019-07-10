@@ -26,9 +26,10 @@ class Task(db.Model):
         nullable=False,
         default=0
     )
-    description = db.Column(
-        db.Text,
-        nullable=True
+    is_active = db.Column(
+        db.Boolean,
+        nullable=False,
+        default=True
     )
 
     def __repr__(self):
