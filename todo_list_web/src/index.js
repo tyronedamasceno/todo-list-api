@@ -1,19 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route } from "react-router-dom";
-import Task from "./task"
-import './App.css';
+import React from "react"
+import ReactDOM from "react-dom"
 
-function App() {
-    return (
-        <div className="App">
-            <h1>Tyrone to-do list </h1>
-            <Router>
-                <Route exact path="/" component={Task}/>
-                <Route path="tasks" />
-            </Router>
-        </div>
-    )
-}
+import "./index.css"
+import TodoList from "./TodoList"
 
-ReactDOM.render(<App />, document.getElementById('root'));
+var destination = document.querySelector("#container");
+
+ReactDOM.render(
+    <div>
+        <TodoList />
+    </div>,
+    destination
+);
