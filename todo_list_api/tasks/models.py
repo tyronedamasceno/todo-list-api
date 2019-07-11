@@ -34,7 +34,7 @@ class Task(db.Model):
     )
 
     def __repr__(self):
-        return f'Task({self.title}, {self.status})'
+        return f'Task(title={self.title}, status={self.status})'
 
     def to_dict(self):
         return dict(
