@@ -4,13 +4,21 @@ import FlipMove from "react-flip-move";
 class TodoItems extends Component {
     constructor(props){
         super(props);
-
+        
         this.createTasks = this.createTasks.bind(this);
     }
-
+    
     createTasks(item) {
+        var status_mapping = {
+            0: 'Waiting',
+            1: 'In progress',
+            2: 'Done'
+        };
         return <li key={item.id} className={`status-${item.status}`}>
-                    {item.title}
+                    <div className="card-texts">
+                        <span className="status-name ">{status_mapping[item.status]}</span>
+                        <p className="task-name">{item.title}</p>
+                    </div>
                     <div className="card-buttons">
                         <button className="card-button" onClick={() => this.delete(item.key)}>
                             Finish

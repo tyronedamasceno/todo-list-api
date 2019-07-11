@@ -4,7 +4,6 @@
     border: 2px solid #FFF;
     width: 165px;
 }
-
 .todoListMain .header button {
     padding: 10px;
     font-size: 16px; 
@@ -14,13 +13,11 @@
     color: #FFF;
     border: 2px solid #0066FF; 
 }
-
 .todoListMain .header button:hover {
     background-color: #003399;
     border: 2px solid #003399;
     cursor: pointer;
 }
-
 .todoListMain .theList li {
     color: #333;
     background-color: rgba(255, 255, 255, .5);
@@ -32,31 +29,34 @@
     justify-content: space-between;
     transition: background-color .2s ease-out;
 }
-
 .todoListMain .theList li.status-0 {
-    background-color: #c8d6e5;
+    background-color: #ff6b6b;
 }
-
 .todoListMain .theList li.status-1 {
-    background-color: #00d2d3;
+    background-color: #1dd1a1;
 }
-
 .todoListMain .theList li.status-2 {
-    background-color: #576574;
+    background-color: #647382;
 }
-
 .card-buttons {
     display: flex;
     flex-direction: column;
 }
-
 .card-button {
     border-width: 0;
     border-radius: 3px;
     margin: 3px 0;
 }
-
-
+.card-texts {
+    display: flex;
+    flex-direction: column;
+}
+.status-name {
+    font-size: 12px;
+}
+.task-name {
+    font-weight: bold;
+}
 ul.theList {
     padding: 0;
 }
