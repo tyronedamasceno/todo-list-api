@@ -77,3 +77,15 @@ def update_task(task_id):
     db.session.add(task)
     db.session.commit()
     return jsonify(updated_data=task.to_dict())
+
+
+@tasks.route('/task/<int:task_id>', methods=['DELETE'])
+def delete_task(task_id):
+    task = Task.query.get(task_id)
+    if not task:
+        return jsonify(error=f'Task with id={task_id} not found'), 404
+
+    task.is_active = False
+    db.session.add(task)
+    db.session.commit()
+    return jsonify(data=task.to_dict())
