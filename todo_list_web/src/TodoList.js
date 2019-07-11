@@ -3,6 +3,7 @@ import TodoItems from "./TodoItems";
 import "./TodoList.css";
 
 class TodoList extends Component {
+    static baseUrl = 'http://localhost:5000/api/v1';
     constructor(props) {
         super(props);
 
@@ -12,6 +13,14 @@ class TodoList extends Component {
 
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+    }
+
+    componentDidMount() {
+        fetch(TodoList.baseUrl+'/tasks').then((response) => {
+          return response.json();  
+        }).then((responseData) => {
+            this.setState({ items: responseData.data.sort(function(a, b) {return a.status-b.status})});
+        }).catch(console.error);
     }
 
     addItem(e) {

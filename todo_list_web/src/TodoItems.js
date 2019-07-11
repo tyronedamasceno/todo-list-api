@@ -9,8 +9,8 @@ class TodoItems extends Component {
     }
 
     createTasks(item) {
-        return <li key={item.key}>
-                    {item.text}
+        return <li key={item.id} className={`status-${item.status}`}>
+                    {item.title}
                     <div className="card-buttons">
                         <button className="card-button" onClick={() => this.delete(item.key)}>
                             Finish

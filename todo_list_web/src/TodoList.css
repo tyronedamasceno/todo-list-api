@@ -30,8 +30,19 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
-
     transition: background-color .2s ease-out;
+}
+
+.todoListMain .theList li.status-0 {
+    background-color: #c8d6e5;
+}
+
+.todoListMain .theList li.status-1 {
+    background-color: #00d2d3;
+}
+
+.todoListMain .theList li.status-2 {
+    background-color: #576574;
 }
 
 .card-buttons {
