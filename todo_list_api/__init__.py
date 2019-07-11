@@ -13,6 +13,8 @@ db = SQLAlchemy(app)
 # Import here to avoid circular imports
 from todo_list_api.tasks import routes
 from todo_list_api.tasks import models
+from todo_list_api.errors.handlers import errors
 app.register_blueprint(routes.tasks, url_prefix='/api/v1')
+app.register_blueprint(errors)
 
 db.create_all()
