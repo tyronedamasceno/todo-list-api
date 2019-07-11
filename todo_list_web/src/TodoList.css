@@ -43,6 +43,7 @@
     flex-direction: column;
 }
 .card-button {
+    font-size: 13px;
     border-width: 0;
     border-radius: 3px;
     margin: 3px 0;

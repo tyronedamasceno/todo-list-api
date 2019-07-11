@@ -20,9 +20,16 @@ class TodoItems extends Component {
                         <p className="task-name">{item.title}</p>
                     </div>
                     <div className="card-buttons">
-                        <button className="card-button" onClick={() => this.delete(item.key)}>
-                            Finish
-                        </button>
+                        {(item.status === 0) && (
+                            <button className="card-button" onClick={() => this.delete(item.key)}>
+                                Start
+                            </button>
+                        )}
+                        {(item.status === 1) && (
+                            <button className="card-button" onClick={() => this.delete(item.key)}>
+                                Finish
+                            </button>
+                        )}
                         <button className="card-button" onClick={() => this.delete(item.key)}>
                             Archive
                         </button>
