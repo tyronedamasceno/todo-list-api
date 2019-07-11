@@ -21,6 +21,7 @@ class Task(db.Model):
         nullable=False,
         default=datetime.utcnow  # give the function as argument
     )
+    # Status will be {0: Waiting, 1: In Progress, 2: Done}
     status = db.Column(
         db.Integer,
         nullable=False,
@@ -41,5 +42,5 @@ class Task(db.Model):
             title=self.title,
             date_posted=self.date_posted.isoformat(),
             status=self.status,
-            description=self.description if self.description else ''
+            is_active=self.is_active
         )

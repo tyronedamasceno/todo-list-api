@@ -1,6 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+# Tasks Status
+WAITING_TASK = 0
+IN_PROGRESS_TASK = 1
+DONE_TASK = 2
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///my.db'

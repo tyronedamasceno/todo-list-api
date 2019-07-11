@@ -1,17 +1,44 @@
 from flask import Blueprint, jsonify, request
+from sqlalchemy import or_
 from werkzeug.exceptions import BadRequest
 
-from todo_list_api import db
+from todo_list_api import db, WAITING_TASK, IN_PROGRESS_TASK, DONE_TASK
 from todo_list_api.tasks.models import Task
 
 tasks = Blueprint('tasks', __name__)
 
 
 @tasks.route('/')
-@tasks.route('/tasks', methods=['GET'])
-def get_all_tasks():
-    all_tasks = Task.query.all()
-    return jsonify(status=200, data=[task.to_dict() for task in all_tasks])
+@tasks.route('/tasks')
+def active_tasks():
+    all_tasks = Task.query.filter_by(is_active=True).all()
+    return jsonify(
+        status=200,
+        data=[task.to_dict() for task in all_tasks]
+    )
+
+
+@tasks.route('/tasks/done')
+def finished_tasks():
+    finished_tasks = Task.query.filter_by(status=DONE_TASK).all()
+    return jsonify(
+        status=200,
+        data=[task.to_dict() for task in finished_tasks]
+    )
+
+
+@tasks.route('tasks/pending')
+def pending_tasks():
+    pending_tasks = Task.query.filter(
+        or_(
+            Task.status == WAITING_TASK,
+            Task.status == IN_PROGRESS_TASK
+        )
+    ).all()
+    return jsonify(
+        status=200,
+        data=[task.to_dict() for task in pending_tasks]
+    )
 
 
 @tasks.route('/tasks', methods=['POST'])
