@@ -28,14 +28,23 @@
     margin-bottom: 15px;
     border-radius: 5px;
     list-style: none;
+    display: flex;
+    justify-content: space-between;
 
     transition: background-color .2s ease-out;
 }
 
-.todoListMain .theList li:hover {
-    background-color: pink;
-    cursor: pointer;
+.card-buttons {
+    display: flex;
+    flex-direction: column;
 }
+
+.card-button {
+    border-width: 0;
+    border-radius: 3px;
+    margin: 3px 0;
+}
+
 
 ul.theList {
     padding: 0;
