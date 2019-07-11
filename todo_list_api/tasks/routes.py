@@ -32,6 +32,12 @@ def pending_tasks():
     return jsonify(data=[task.to_dict() for task in pending_tasks])
 
 
+@tasks.route('/tasks/archived')
+def archived_tasks():
+    archived_tasks = Task.query.filter_by(is_active=False).all()
+    return jsonify(data=[task.to_dict() for task in archived_tasks])
+
+
 @tasks.route('/tasks', methods=['POST'])
 def create():
     try:
