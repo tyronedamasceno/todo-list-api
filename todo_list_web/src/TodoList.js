@@ -13,7 +13,7 @@ class TodoList extends Component {
 
         this.addItem = this.addItem.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
-        this.finishTask = this.finishTask.bind(this);
+        this.updateTask = this.updateTask.bind(this);
     }
 
     componentDidMount() {
@@ -32,16 +32,21 @@ class TodoList extends Component {
             };
             fetch(TodoList.baseUrl+'/tasks', {
                 headers: {'Content-Type': 'application/json'},
-                method: 'post',
+                method: 'POST',
                 body: JSON.stringify(newItem)
             }).then((response) => {
                 return response.json();
             }).then((response) => {
+                newItem.id = response.data.id;
                 newItem.key = response.data.id;
                 newItem.status = response.data.status;
+                
+                const items = this.state.items;
+                const newItems = items.concat(newItem);
+                const newSortedItems = newItems.sort((a, b) => a.status-b.status);
                 this.setState((prevState) => {
                     return {
-                        items: prevState.items.concat(newItem)
+                        items: newSortedItems
                     };
                 });
             });
@@ -54,7 +59,7 @@ class TodoList extends Component {
 
     deleteItem(key) {
         fetch(TodoList.baseUrl+'/task/'+key, {
-            method: 'delete'
+            method: 'DELETE'
         }).then((response) =>{
             var filteredItems = this.state.items.filter(function (item) {
                 return (item.id !== key);
@@ -65,11 +70,11 @@ class TodoList extends Component {
         });
     }
 
-    finishTask(key) {
+    updateTask(key, newStatus) {
         fetch(TodoList.baseUrl+'/task/'+key, {
             headers: {'Content-Type': 'application/json'},
-            method: 'patch',
-            body: JSON.stringify({status: 2})
+            method: 'PATCH',
+            body: JSON.stringify({status: newStatus})
         }).then((response) => {
             return response.json();
         }).then((res) => {
@@ -101,7 +106,8 @@ class TodoList extends Component {
               </div>
               <TodoItems entries={this.state.items}
                          delete={this.deleteItem}
-                         finish={this.finishTask}/>
+                         update={this.updateTask}
+                         />
             </div>
         )
     }

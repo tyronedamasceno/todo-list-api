@@ -21,12 +21,12 @@ class TodoItems extends Component {
                     </div>
                     <div className="card-buttons">
                         {(item.status === 0) && (
-                            <button className="card-button" >
+                            <button className="card-button"  onClick={() => this.update(item.id, 1)}>
                                 Start
                             </button>
                         )}
                         {(item.status === 1) && (
-                            <button className="card-button" onClick={() => this.finish(item.id)}>
+                            <button className="card-button" onClick={() => this.update(item.id, 2)}>
                                 Finish
                             </button>
                         )}
@@ -41,8 +41,8 @@ class TodoItems extends Component {
         this.props.delete(key);
     }
     
-    finish(key) {
-        this.props.finish(key);
+    update(key, newStatus) {
+        this.props.update(key, newStatus);
     }
 
     render() {
