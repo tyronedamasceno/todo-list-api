@@ -26,7 +26,7 @@ class TodoItems extends Component {
                             </button>
                         )}
                         {(item.status === 1) && (
-                            <button className="card-button">
+                            <button className="card-button" onClick={() => this.finish(item.id)}>
                                 Finish
                             </button>
                         )}
@@ -39,6 +39,10 @@ class TodoItems extends Component {
 
     delete(key) {
         this.props.delete(key);
+    }
+    
+    finish(key) {
+        this.props.finish(key);
     }
 
     render() {
