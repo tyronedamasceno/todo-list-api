@@ -52,13 +52,18 @@ class TodoList extends Component {
     }
 
     deleteItem(key) {
-      var filteredItems = this.state.items.filter(function (item) {
-        return (item.key !== key);
-      });
-
-      this.setState({
-          items: filteredItems
-      });
+        fetch(TodoList.baseUrl+'/task/'+key, {
+            method: 'delete'
+        }).then((response) =>{
+            if (response.ok && response.status === 200) {
+                var filteredItems = this.state.items.filter(function (item) {
+                    return (item.id !== key);
+                });
+                this.setState({
+                    items: filteredItems
+                });
+            }
+        });
     }
 
     render() {
