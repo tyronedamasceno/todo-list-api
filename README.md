@@ -1,5 +1,5 @@
 # todo-list-api
-Beginner project using Flask + React.js
+Rest API to handle a todo-list. Built using python + flask!
 
 A todo-list based on tasks.
 
