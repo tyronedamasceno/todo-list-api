@@ -19,7 +19,7 @@ obs: parameters are from request body (json)
 | Method |     Description      |  Parameters  | 
 | ------ | -------------------- | ------------ |
 | GET    |  Get information from a specific task  | *id*(on url)  |
-| PATCH  |  Update information from a specific task  | *id*(on url), *title*(optional), *status*(optional)  |
+| PATCH  |  Update information from a specific task  | *id*(on url), *title*(optional), *status*(optional), *is_active*(optional)  |
 | DELETE |  *Soft* delete a specific task | *id*(on url)  |
 
 
