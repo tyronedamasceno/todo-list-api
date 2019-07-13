@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 from werkzeug.exceptions import BadRequest
 
 from todo_list_api import db, WAITING_TASK, IN_PROGRESS_TASK, DONE_TASK
@@ -17,16 +17,24 @@ def active_tasks():
 
 @tasks.route('/tasks/done')
 def finished_tasks():
-    finished_tasks = Task.query.filter_by(status=DONE_TASK).all()
+    finished_tasks = Task.query.filter(
+        and_(
+            Task.is_active,
+            Task.status == DONE_TASK
+        )
+    ).all()
     return jsonify(data=[task.to_dict() for task in finished_tasks])
 
 
 @tasks.route('tasks/pending')
 def pending_tasks():
     pending_tasks = Task.query.filter(
-        or_(
-            Task.status == WAITING_TASK,
-            Task.status == IN_PROGRESS_TASK
+        and_(
+            Task.is_active,
+            or_(
+                Task.status == WAITING_TASK,
+                Task.status == IN_PROGRESS_TASK
+            )
         )
     ).all()
     return jsonify(data=[task.to_dict() for task in pending_tasks])
@@ -81,7 +89,9 @@ def update_task(task_id):
 
     task.title = new_title or task.title
     task.status = new_status or task.status
-    task.is_active = new_is_active if new_is_active is not None else task.is_active
+    task.is_active = (
+        new_is_active if new_is_active is not None else task.is_active
+    )
     db.session.add(task)
     db.session.commit()
     return jsonify(updated_data=task.to_dict())
