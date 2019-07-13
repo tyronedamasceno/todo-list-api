@@ -77,9 +77,11 @@ def update_task(task_id):
 
     new_title = request_body.get('title')
     new_status = request_body.get('status')
+    new_is_active = request_body.get('is_active')
 
     task.title = new_title or task.title
     task.status = new_status or task.status
+    task.is_active = new_is_active if new_is_active is not None else task.is_active
     db.session.add(task)
     db.session.commit()
     return jsonify(updated_data=task.to_dict())
