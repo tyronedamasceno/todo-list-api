@@ -4,7 +4,9 @@
 
 *  Endpoints
 
-obs: parameters are from request body (json)
+obs1: parameters are from request body (json)
+
+obs2: endpoint requires a `/api/v1` prefix, ex: `localhost:5000/api/v1/tasks`
 
 **/tasks**
 
