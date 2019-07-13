@@ -1,4 +1,4 @@
-# My-Todo-List
+# todo-list-api
 Beginner project using Flask + React.js
 
 A todo-list based on tasks.
